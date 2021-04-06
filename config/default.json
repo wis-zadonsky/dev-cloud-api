@@ -1,0 +1,6 @@
+{
+	"mongoURI": "mongodb+srv://k1k8r:adobelock123@devcloud.wpgdx.mongodb.net/test?retryWrites=true&w=majority",
+	"secretKey": "mysecrettoken",
+	"githubClientId": "b84af37a21d199735005",
+	"githubSecret": "d61622fa48ea9d8ddd321e8525e3a76241c83998"
+}
