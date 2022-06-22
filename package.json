@@ -4,7 +4,7 @@
 	"description": "Socila network for developers",
 	"main": "server.js",
 	"engines": {
-		"node": "14.*"
+		"node": "16.*"
 	},
 	"scripts": {
 		"start": "node server.js",
