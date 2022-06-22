@@ -76,7 +76,7 @@ router.post(
     if (skills) {
       if (typeof skills === "object") {
         profileFields.skills = skills;
-      } else if (typeof skills === "string") {
+      } else {
         profileFields.skills = skills.split(",").map((skill) => skill.trim());
       }
     }
