@@ -8,6 +8,7 @@ const { check, validationResult } = require("express-validator");
 const Profile = require("../../models/Profile");
 const User = require("../../models/User");
 const Post = require("../../models/Post");
+const Report = require("../../models/Report");
 const { response, statusCode } = require("express");
 
 // @route   GET api/profile/me
@@ -311,6 +312,43 @@ router.delete("/education/:edu_id", auth, async (req, res) => {
     res.status(500).send("Server error");
   }
 });
+
+router.post(
+  "/report",
+  [
+    auth,
+    [
+      check("title", "Title is required").not().isEmpty(),
+      check("description", "Description is required").not().isEmpty(),
+    ],
+  ],
+  async (req, res) => {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    const { title, description, userName, reportDate } = req.body;
+
+    let reportModel = {};
+    reportModel.user = req.user.id;
+    reportModel.title = title;
+    reportModel.description = description;
+    reportModel.userName = userName;
+    reportModel.reportDate = reportDate;
+
+    try {
+      let report = new Report(reportModel);
+      await report.save();
+
+      res.json(report);
+    } catch (err) {
+      console.error(err);
+      res.status(500).json("Server error");
+    }
+  }
+);
 
 // @route   GET api/profile/github/:username
 // @desc    Get user repos from Github
