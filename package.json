@@ -8,7 +8,6 @@
 	},
 	"scripts": {
 		"start": "node server",
-		"build": "netlify-lambda build .",
 		"server": "nodemon server"
 	},
 	"author": "Andrey Zadonsky",
